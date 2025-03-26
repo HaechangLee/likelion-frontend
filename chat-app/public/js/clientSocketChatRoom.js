@@ -35,6 +35,9 @@ socket.addEventListener('message', (event) => {
     if (data.type && data.type.toUpperCase() === 'JOIN') {
         displayMessage(data);
     }
+    if (data.type && data.type.toUpperCase() === 'LEAVE') {
+        displayMessage(data);
+    }
 });
 
 document.getElementById('chat-form').addEventListener('submit', (e) => {
@@ -75,6 +78,6 @@ function displayMessage(data) {
 }
 
 function leaveRoom() {
-    socket.send(JSON.stringify({ type: 'leave', roomId }));
+    socket.send(JSON.stringify({ type: 'LEAVE', roomId: roomId, sender: username }));
     window.location.href = 'index.html';
 }
